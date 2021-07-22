@@ -1,0 +1,6 @@
+<p>Make you own pizza, and get it delivered at your home</p>
+<h3 class="float-right">Order's [<strong (click)="showOrders($event)">{{orderCount}}</strong>]</h3>
+<h2>Products</h2>
+<app-product-page [Products]="products" (refreshOrder)="refreshOrderCount()"></app-product-page>
+
+

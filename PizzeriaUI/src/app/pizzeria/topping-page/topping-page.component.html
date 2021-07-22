@@ -1,0 +1,111 @@
+<form>
+    <h4> {{item.name}} </h4>
+    <table>
+        <tr class="form-control"> 
+            <td class="custom-td">
+                Quantity : 
+            </td>
+            <td class="custom-td">
+                <select  (change)="changeQuantity($event)">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+        </select>
+            </td>
+        </tr>
+    </table>
+    
+    <table>
+        <tr class="form-control"> 
+            <td class="custom-td">
+                <input type="radio" id="small" name="defaultExampleRadios" checked
+                    (click)="pizzaSelected($event, item?.smallPrice, 'small',  item)"/>
+            </td>
+            <td class="custom-td">
+                <label for="small"> Small 7 inch </label>
+            </td>
+            <td class="custom-td">
+                {{item?.smallPrice}}
+            </td>
+           
+        </tr>
+
+        <tr class="form-control"> 
+            <td class="custom-td">
+                <input type="radio" id="medim" name="defaultExampleRadios"
+                (click)="pizzaSelected($event, item?.mediumPrice, 'medium',  item)"/>
+            </td>
+            <td class="custom-td">
+                <label for="medim"> Medium 10 inch </label>
+            </td>
+            <td class="custom-td">
+                {{item?.mediumPrice}}
+            </td>
+            
+        </tr>
+
+        <tr class="form-control"> 
+            <td class="custom-td">
+                <input type="radio" id="large" name="defaultExampleRadios"
+                (click)="pizzaSelected($event, item?.largePrice, 'large', item)"/>
+            </td>
+            <td class="custom-td">
+                <label for="large"> Large 11 inch </label>
+            </td>
+            <td class="custom-td">
+                {{item?.largePrice}}
+            </td>
+          
+        </tr>
+    </table>
+
+    <h3>Toppings</h3>
+        <table>
+            <tr *ngFor="let item of Toppings" class="form-control"> 
+                <td class="custom-td">
+                 <input type="checkbox" [value]="item.toppingID" (change)="toppingClicked($event, item)"/>
+                </td>
+                <td class="custom-td">
+                   <span>{{ item.toppingName }}</span> 
+                </td>
+                <td class="custom-td">
+                    <span>{{ item.toppingPrice }}</span>
+                </td>
+            </tr>
+        </table>
+        <h3>Addons</h3>
+           <table>
+               <tr *ngFor="let item of addOns" class="form-control">
+                   <td class="custom-td">
+                    <input type="radio" [id]="item.addOnID" name="addOnRadioButtons"
+                    (click)="addOnClicked($event, item)"/>
+                   </td>
+                   <td class="custom-td">
+                    <span>{{ item.name }}</span>
+                   </td>
+                   <td class="custom-td">
+                    <span>{{ item.price }}</span>
+                   </td>
+               </tr>
+           </table>
+
+           <h3>Sides</h3>
+           <table>
+               <tr *ngFor="let item of sideItems" class="form-control">
+                   <td class="custom-td">
+                    <input type="checkbox" [value]="item.iD" (change)="sidesClicked($event, item)"/>
+                </td>
+                   <td>
+                    <img [src]="'assets/images/' + item.imageUrl" width="25px" height="25px"/> 
+                   </td>
+                   <td class="custom-td">
+                    <span>{{ item.name }}</span>
+                   </td>
+                   <td class="custom-td">
+                    <span>{{ item.totalPrice }}</span>
+                   </td>
+               </tr>
+           </table>
+</form>

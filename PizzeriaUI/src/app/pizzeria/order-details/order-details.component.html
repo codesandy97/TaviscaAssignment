@@ -1,0 +1,71 @@
+<h2>Orders</h2>
+<ul *ngFor="let order of orders">
+    <li>
+       <div class="form-control" (click)="OrderClicked(order)">
+        <img [src]="'assets/images/' + order.selectedpizzas[0].imageUrl" width="25px" height="25px"/>
+        {{ order.selectedpizzas[0].name }} 
+        {{ order.totalExpense}}
+        <div *ngIf="showOrderDetail">
+            Detail is here..
+        </div>
+       </div>
+    </li>
+</ul>
+
+<div *ngIf="selectedOrder">
+    <div> 
+       <h3>
+        {{ selectedPizza.name }}
+       </h3> 
+        <img [src]="'assets/images/' + selectedPizza.imageUrl" width="200px" height="200px"/>
+         | Price : Rs. {{ selectedPizza.totalPrice}}
+         | Quantity :  {{ selectedPizza.quantity}}
+         | Size : {{ SetSizeLabel(selectedPizza) }}
+    </div>  
+    <div> 
+        <div *ngIf="selectedPizza.toppings">
+            <h3>Toppings</h3>
+            <table>
+                <tr *ngFor="let item of selectedPizza.toppings" class="form-control"> 
+                   <td class="custom-td">
+                       <span>{{ item.toppingName }}</span> 
+                    </td>
+                    <td class="custom-td">
+                        <span> | Price : Rs. {{ item.toppingPrice }}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+       
+        <div *ngIf="selectedPizza.addOn">
+            <h3>Addons</h3>
+            <table>
+                <tr class="form-control">
+                    <td class="custom-td">
+                     <span>{{ selectedPizza.addOn.name }}</span>
+                    </td>
+                    <td class="custom-td">
+                     <span> | Price : Rs. {{ selectedPizza.addOn.price }} </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <div *ngIf="selectedSideItems && selectedSideItems.length > 0">
+        <h3>Sides</h3>
+        <table>
+            <tr *ngFor="let item of selectedSideItems" class="form-control">
+               <td>
+                 <img [src]="'assets/images/' + item.imageUrl" width="25px" height="25px"/> 
+                </td>
+                <td class="custom-td">
+                 <span>{{ item.name }}</span>
+                </td>
+                <td class="custom-td">
+                 <span> | Price : Rs.  {{ item.totalPrice }}</span>
+                </td>
+            </tr>
+        </table>
+    </div>    
+</div>
